@@ -19,6 +19,7 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
+    //get all recipes
     @GetMapping("/getRecipe")
     public ResponseEntity<List<Recipe>> getAllRecipes() {
         try {
@@ -30,6 +31,7 @@ public class RecipeController {
         }
     }
 
+    //get one recipe by ID
     @GetMapping("/getRecipe/{id}")
     public ResponseEntity<Recipe> getRecipesById(@PathVariable Long id) {
          try {
@@ -39,13 +41,13 @@ public class RecipeController {
             }
         }
          catch (Exception e) {
-             logger.info("Recipe not found for given ID:"+id);
+             logger.info("Recipe not found for given ID:{}", id);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
+    // add recipe
     @PostMapping("/addRecipe")
     public ResponseEntity<Recipe> addRecipe(@RequestBody Recipe recipe){
         try {
@@ -58,6 +60,7 @@ public class RecipeController {
         }
     }
 
+    //update recipe
     @PutMapping("/updateRecipe/{id}")
     public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe recipe, @PathVariable Long id) {
          try{
@@ -74,6 +77,8 @@ public class RecipeController {
 
 
     }
+
+    //delete recipe
     @DeleteMapping("/deleteRecipe/{id}")
     public ResponseEntity<String> deleteRecipe(@PathVariable Long id) {
         try{
@@ -83,13 +88,14 @@ public class RecipeController {
             }
         }
         catch (Exception e) {
-            logger.info("Recipe not delete .No recipe found for given ID:"+id);
+            logger.info("Recipe not delete .No recipe found for given ID:{}", id);
             return new ResponseEntity<>("No recipe present with this id", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>("No recipe present with id:"+id, HttpStatus.NOT_FOUND);
 
     }
 
+    //filter recipe on bases of one or more params
     @GetMapping("/filter")
     public ResponseEntity<List<Recipe>> findRecipes(
             @RequestParam(required = false) Boolean vegetarian,

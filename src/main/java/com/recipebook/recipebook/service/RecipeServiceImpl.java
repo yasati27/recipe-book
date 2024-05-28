@@ -1,6 +1,5 @@
 package com.recipebook.recipebook.service;
 
-import com.recipebook.recipebook.controller.RecipeController;
 import com.recipebook.recipebook.dao.RecipeDao;
 import com.recipebook.recipebook.entity.Recipe;
 import org.slf4j.Logger;
@@ -35,7 +34,7 @@ public class RecipeServiceImpl implements RecipeService{
             Optional<Recipe> getbyId = recipeDao.findById(id);
             return getbyId.orElse(null);
         } catch (Exception e) {
-            logger.info("Recipe could not be found for id:" +id);
+            logger.info("Recipe could not be found for id:{}", id);
         }
         return null;
     }

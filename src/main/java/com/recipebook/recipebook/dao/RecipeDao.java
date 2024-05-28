@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface RecipeDao extends JpaRepository<Recipe,Long> {
 
+    // query to fetch data from database on bases of one or more params
     @Query("SELECT DISTINCT r FROM Recipe r " +
             "LEFT JOIN FETCH r.ingredients i " +
             "WHERE (:vegetarian IS NULL OR r.isVeg = :vegetarian) " +

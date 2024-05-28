@@ -40,13 +40,16 @@ class RecipebookApplicationTests {
 		// Call the service method
 		List<Recipe> result = recipeService.findRecipes(true,null,"ING2",null,null);
 		List<Recipe> expected = List.of(new Recipe(null, "Recipe 1", "Instruction 1", true, 1, Arrays.asList(new Ingredients(null,"ING2"),new Ingredients(null,"ING1"))));
-		Assertions.assertEquals(expected.get(0).getName(),result.get(0).getName());
-		Assertions.assertEquals(expected.get(0).getIsVeg(),result.get(0).getIsVeg());
 
 		List<String> expectedList = expected.get(0).getIngredients().stream().map(Ingredients::getName).sorted().toList();
 		List<String> resultList = result.get(0).getIngredients().stream().map(Ingredients::getName).sorted().toList();
 
+		//assert
+		Assertions.assertEquals(expected.get(0).getName(),result.get(0).getName());
+		Assertions.assertEquals(expected.get(0).getIsVeg(),result.get(0).getIsVeg());
 		Assertions.assertTrue(resultList.containsAll(expectedList));
+
+		//Call delete methods
 		recipeDao.delete(r1);
 		recipeDao.delete(r2);
 
