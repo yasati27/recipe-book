@@ -23,7 +23,7 @@ spring.datasource.username=username
 spring.datasource.password=password
 ```
 
-3. Go to root directory that is ~/spring-boot-crud and run the following command
+3. Go to root directory that is ~/recipe-book and run the following command
 ```
   ./mvnw spring-boot:run
 ```
